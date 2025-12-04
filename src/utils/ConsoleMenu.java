@@ -129,11 +129,10 @@ public class ConsoleMenu {
         System.out.println("**********************");
         System.out.println("1. Create new project");
         System.out.println("2. Display projects");
-        System.out.println("3. Display project Details");
-        System.out.println("4. Update project Details");
-        System.out.println("5. Filter Projects");
-        System.out.println("6. Delete Project");
-        System.out.println("7. Return To Main Menu");
+        System.out.println("3. Update project Details");
+        System.out.println("4. Filter Projects");
+        System.out.println("5. Delete Project");
+        System.out.println("6. Return To Main Menu");
         System.out.println("\n Enter choice: ");
 
         choice = scanner.nextInt();
@@ -154,25 +153,21 @@ public class ConsoleMenu {
 
                     break;
                 case 3:
-                    System.out.println("project details");
-                    projectService.getAllProjects();
-                    break;
-                case 4:
                     System.out.println("update");
                     projectService.updateProjectMenu();
                     break;
-                case 5:
+                case 4:
                     System.out.println("Delete");
                     projectService.deleteProject();
                     break;
-                case 6:
+                case 5:
                     System.out.println("Search");
                     System.out.println("Enter project id to search:");
                     int id = scanner.nextInt();
                     scanner.nextLine();
                     projectService.findProjectById(id);
                     break;
-                case 7:
+                case 6:
                     System.out.println("Return");
                     new ConsoleMenu();
                     break;
@@ -184,6 +179,7 @@ public class ConsoleMenu {
     }
 
     public void TaskMenu(){
+        int taskId;
         System.out.println("*******************");
         System.out.println("* TASK MANAGEMENT *");
         System.out.println("*******************");
@@ -200,7 +196,7 @@ public class ConsoleMenu {
             switch (choice){
                 case 1:
                     System.out.println(" Task creation ");
-                    taskService.createTaskMenu(projectService);
+                    taskService.createTaskMenu(projectService, userService);
                     break;
                 case 2:
                     System.out.println("Task list display");
@@ -219,9 +215,12 @@ public class ConsoleMenu {
                     }
                     break;
                 case 4:
-                    System.out.println("Delete pending");
+                    System.out.println("Delete Task");
+                    System.out.println("Enter task id to delete:");
+                    taskId = scanner.nextInt();
+                    scanner.nextLine();
                     try {
-                        taskService.deleteTask();
+                        taskService.deleteTask(taskId);
                     }catch (TaskNotFoundException e){
                         System.out.println(e.getMessage());
                     }

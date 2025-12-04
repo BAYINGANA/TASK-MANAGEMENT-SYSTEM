@@ -1,19 +1,15 @@
 package models;
 
-import java.util.Scanner;
-
 public class TaskCatalog {
-    public Scanner scanner = new Scanner(System.in);
-    public int choice ;
 
-    private int taskId;
+    private final int taskId;
     private String taskName;
     private String taskDescription;
     private TaskStatus taskStatus;
     private int assignedUserId;
-    private int projectID;
+    private final int projectID;
 
-    public TaskCatalog(int taskId, String taskName, String taskDescription, TaskStatus notStarted, int projectID) {
+    public TaskCatalog(int taskId, String taskName, String taskDescription, int projectID) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
@@ -24,14 +20,6 @@ public class TaskCatalog {
 
     public int getTaskId() {
         return taskId;
-    }
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public String getTaskDescription() {
-        return taskDescription;
     }
 
     public TaskStatus getTaskStatus() {
@@ -54,14 +42,6 @@ public class TaskCatalog {
         this.taskDescription = taskDescription;
     }
 
-    public void setProjectID(int projectID) {
-        this.projectID = projectID;
-    }
-
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
-    }
-
     public void setAssignedUserId(int assignedUserId) {
         this.assignedUserId = assignedUserId;
     }
@@ -74,32 +54,5 @@ public class TaskCatalog {
         return "Task{id=" + taskId + ", name='" + taskName + "', status=" + taskStatus +
                 ", assignedUserId=" + assignedUserId + ", projectId=" + projectID + "}";
     }
-
-    public void updateTaskDetails(){
-        int newID;
-        String newTaskName;
-        String newTaskDescription;
-        String newTaskStatus;
-        String newTaskPriority;
-        int newAssignedUserId;
-
-        System.out.println("Enter new task ID:");
-        newID = scanner.nextInt();
-        taskId = newID;
-
-        System.out.println("Enter new task name:");
-        newTaskName = scanner.nextLine();
-        taskName = newTaskName;
-
-        System.out.println("Enter the task description:");
-        newTaskDescription = scanner.nextLine();
-        taskDescription = newTaskDescription;
-
-        System.out.println("Eter assigned user ID:");
-        newAssignedUserId = scanner.nextInt();
-        assignedUserId = newAssignedUserId;
-    }
-
-
 }
 
