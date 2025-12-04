@@ -3,15 +3,6 @@ package utils;
 import utils.exceptions.InvalidInputException;
 
 public class ValidationUtils {
-
-	public static boolean isNonEmpty(String s) {
-		return s != null && !s.trim().isEmpty();
-	}
-
-	public static boolean isPositiveInt(int n) {
-		return n > 0;
-	}
-
 	public static boolean isValidEmail(String email) {
 		if (email == null) return false;
 		email = email.trim();
@@ -28,10 +19,17 @@ public class ValidationUtils {
         if (name.matches(".*\\d.*")){
             throw new InvalidInputException("Name CANNOT contain numbers");
         }
-        if(name.isEmpty() || name == null){
+        if(name.isEmpty()){
             throw new InvalidInputException("Name CANNOT be empty");
         }
     }
 
+    public static boolean isNotEmpty(String userInput){
+        boolean valid = !userInput.isEmpty();
+        if(!valid){
+            System.out.println("This field CANNOT be empty");
+        }
+        return valid;
+    }
 }
 
