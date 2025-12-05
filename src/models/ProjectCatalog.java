@@ -45,15 +45,8 @@ public abstract class ProjectCatalog {
         tasks.add(task);
     }
 
-    
-    public void updateTask(TaskCatalog task) {
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getTaskId() == task.getTaskId()) {
-                tasks.set(i, task);
-                return;
-            }
-        }
-        tasks.add(task);
+    public List<TaskCatalog> getTasks() {
+        return tasks;
     }
 
     @Override
