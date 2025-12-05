@@ -6,7 +6,7 @@ public class TaskCatalog {
     private String taskName;
     private String taskDescription;
     private TaskStatus taskStatus;
-    private int assignedUserId;
+    private String assignedUserId;
     private int projectID;
 
     public TaskCatalog(String taskId, String taskName, String taskDescription, int projectID) {
@@ -14,7 +14,7 @@ public class TaskCatalog {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = TaskStatus.NOT_STARTED;
-        this.assignedUserId = 0;
+        this.assignedUserId = "0";
         this.projectID = projectID;
     }
 
@@ -30,7 +30,7 @@ public class TaskCatalog {
         this.taskStatus = taskStatus;
     }
 
-    public int getAssignedUserId() {
+    public String getAssignedUserId() {
         return assignedUserId;
     }
 
@@ -42,7 +42,7 @@ public class TaskCatalog {
         this.taskDescription = taskDescription;
     }
 
-    public void setAssignedUserId(int assignedUserId) {
+    public void setAssignedUserId(String assignedUserId) {
         this.assignedUserId = assignedUserId;
     }
 

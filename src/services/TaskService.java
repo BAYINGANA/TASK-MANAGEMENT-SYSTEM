@@ -73,10 +73,10 @@ public class TaskService {
         userService.getAllUsers();
 
         System.out.println("Enter user ID to assign this task (or 0 for unassigned):");
-        int assignedUserId = Integer.parseInt(scanner.nextLine());
+        String assignedUserId = scanner.nextLine();
 
         TaskCatalog task = new TaskCatalog(taskId, name, desc, project.getProjectID());
-        if (assignedUserId > 0) {
+        if (ValidationUtils.isNotEmpty(assignedUserId)) {
             task.setAssignedUserId(assignedUserId);
         }
         tasks.add(task);
@@ -158,23 +158,19 @@ public class TaskService {
         }
     }
 
-    public void updateAssignedUser(TaskCatalog task) {
+    public void updateAssignedUser (TaskCatalog task) throws InvalidInputException {
         System.out.println("Available users:");
         UserService userService = new UserService();
         userService.getAllUsers();
         System.out.println("Enter new assigned user ID (0 for unassigned):");
 
-        try {
-            int userId = Integer.parseInt(scanner.nextLine());
-            if (userId > 0) {
-                task.setAssignedUserId(userId);
-            } else {
-                task.setAssignedUserId(0);  // unassigned
-            }
-            System.out.println("Assigned user updated.");
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid number.");
+        String userId = scanner.nextLine();
+        if (ValidationUtils.isNotEmpty(userId)) {
+            task.setAssignedUserId(userId);
+        } else {
+            task.setAssignedUserId("0");  // unassigned
         }
+        System.out.println("Assigned user updated.");
     }
 
     public void updateProject(TaskCatalog task) {

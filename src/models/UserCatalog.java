@@ -1,23 +1,22 @@
 package models;
 
-import java.util.List;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 public abstract class UserCatalog {
-    protected int id;
+    protected String id;
     protected String name;
     protected String email;
+    protected String password;
     protected UserStatus status;
 
-    public UserCatalog(int id, String name, UserStatus status, String email) {
+    public UserCatalog(String id, String name, String password , UserStatus status, String email) {
         this.id = id;
         this.name = name;
+        this.password = password;
         this.status = status;
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -29,12 +28,16 @@ public abstract class UserCatalog {
         this.name = name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getPassword() {
+        return password;
     }
 
-    public String getEmail() {
-        return email;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public UserStatus getStatus() {
@@ -47,7 +50,7 @@ public abstract class UserCatalog {
 
     @Override
     public String toString(){
-        return String.format("User[Id=%d, Name=%s, Email=%s, Status=%s]",id, name, email, status);
+        return String.format("User[Id=%s, Name=%s, Email=%s, Status=%s]",id, name, email, status);
     }
 }
 

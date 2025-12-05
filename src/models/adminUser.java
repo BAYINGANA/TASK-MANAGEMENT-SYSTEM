@@ -1,11 +1,9 @@
 package models;
 
-import java.util.Scanner;
-
 public class adminUser extends UserCatalog {
 
-    public adminUser(int id, String name, String email) {
-        super(id, name, UserStatus.ACTIVE, email);
+    public adminUser(String id, String name, String password ,String email) {
+        super(id, name, password , UserStatus.ACTIVE, email);
     }
 }
 

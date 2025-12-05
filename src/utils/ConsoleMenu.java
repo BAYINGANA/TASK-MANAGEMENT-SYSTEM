@@ -1,11 +1,13 @@
 package utils;
 
 import models.TaskCatalog;
+import models.UserCatalog;
 import services.ProjectService;
 import services.ReportService;
 import services.TaskService;
 import services.UserService;
 import utils.exceptions.EmptyProjectException;
+import utils.exceptions.InvalidInputException;
 import utils.exceptions.TaskNotFoundException;
 
 import java.util.Scanner;
@@ -44,7 +46,7 @@ public class ConsoleMenu {
                         ProjectMenu();
                         break;
                     case 3:
-                        System.out.println("TAsk Management");
+                        System.out.println("Task Management");
                         TaskMenu();
                         break;
                     case 4:
@@ -63,7 +65,7 @@ public class ConsoleMenu {
     }
 
     public void UserMenu(){
-        int userId;
+        String userId;
 
         while(true) {
             System.out.println("*******************");
@@ -75,18 +77,23 @@ public class ConsoleMenu {
             System.out.println("4. Activate and Deactivate User");
             System.out.println("5. Update User Information");
             System.out.println("6. Delete User");
-            System.out.println("7. Search User");
+            System.out.println("7. Search User By Name");
             System.out.println("8. Return to Main Menu");
             System.out.println("9. Exit system");
             System.out.println("\n Enter choice: ");
 
             choice = scanner.nextInt();
+            scanner.nextLine();
 
             if (choice != 0) {
                 switch (choice) {
                     case 1:
                         System.out.println(" User creation ");
-                        userService.createUser();
+                        try {
+                            userService.createUser();
+                        }catch (InvalidInputException e){
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 2:
                         System.out.println("Users display");
@@ -95,8 +102,7 @@ public class ConsoleMenu {
                     case 3:
                         System.out.println("User display");
                         System.out.println("Enter user id to display:");
-                        userId = scanner.nextInt();
-                        scanner.nextLine();
+                        userId = scanner.nextLine();
                         userService.findUserById(userId);
                         break;
                     case 4:
@@ -124,6 +130,47 @@ public class ConsoleMenu {
                         break;
                     default:
                         System.out.println("please enter a valid choice");
+                }
+            }
+        }
+    }
+
+    public void showUserUpdateOptions(UserCatalog user) {
+        while (true) {
+            System.out.println("\n==== UPDATE MENU ====");
+            System.out.println("1. Update User Name");
+            System.out.println("2. Update User Email");
+            System.out.println("3. Update Password");
+            System.out.println("4. Exit Update Menu");
+            System.out.println("5. Exit system");
+            System.out.print("Choose an option: ");
+
+            choice = scanner.nextInt();
+
+            if (choice != 0) {
+
+                switch (choice) {
+                    case 1:
+                        userService.updateUserName(user);
+                        break;
+
+                    case 2:
+                        userService.updateUserEmail(user);
+                        break;
+
+                    case 3:
+                        userService.updateUserPassword(user);
+                        break;
+                    case 4:
+                        System.out.println("Exiting update menu...");
+                        MainMenu();
+                        break;
+                    case 5:
+                        System.out.println("Exiting...");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Try again.");
                 }
             }
         }
@@ -277,7 +324,11 @@ public class ConsoleMenu {
                         break;
 
                     case 4:
-                        taskService.updateAssignedUser(task);
+                        try {
+                            taskService.updateAssignedUser(task);
+                        }catch (InvalidInputException e){
+                            System.out.println(e.getMessage());
+                        }
                         break;
 
                     case 5:
@@ -298,9 +349,6 @@ public class ConsoleMenu {
             }
         }
     }
-
-
-
 
     public void ReportsMenu() {
 
