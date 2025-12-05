@@ -15,13 +15,17 @@ public class ValidationUtils {
 		return true;
 	}
 
-    public static void isValidName(String name) throws InvalidInputException {
+    public static boolean isValidName(String name) throws InvalidInputException {
         if (name.matches(".*\\d.*")){
             throw new InvalidInputException("Name CANNOT contain numbers");
         }
-        if(name.isEmpty()){
+        else if(name.matches(".*[^a-zA-Z0-9]")){
+            throw new InvalidInputException("Name CANNOT contain symbols");
+        }
+        else if(name.isEmpty()){
             throw new InvalidInputException("Name CANNOT be empty");
         }
+        return false;
     }
 
     public static boolean isNotEmpty(String userInput){
@@ -30,6 +34,19 @@ public class ValidationUtils {
             System.out.println("This field CANNOT be empty");
         }
         return valid;
+    }
+
+    public static boolean isValidPassword(String password) throws InvalidInputException{
+        if(!password.matches(".*[a-zA-Z].*")){
+            throw new InvalidInputException("Please include alphabetic characters!!");
+        }
+        else if(!password.matches(".*\\d.*")){
+            throw new InvalidInputException("Password not Strong. try including numbers!!");
+        }
+        else if(!password.matches(".*[^a-zA-Z0-9].*")){
+            throw new InvalidInputException("Password is not Strong.try including symbols!!");
+        }
+        return true;
     }
 }
 
