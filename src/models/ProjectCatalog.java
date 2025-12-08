@@ -5,14 +5,14 @@ import java.util.List;
 
 
 public abstract class ProjectCatalog {
-    protected int projectID;
+    protected String projectID;
     protected String projectName;
     protected String projectDescription;
     protected String projectCategory;
     protected String projectDeadline;
     protected List<TaskCatalog> tasks = new ArrayList<>();
 
-    protected ProjectCatalog(int projectID, String projectName, String projectDescription, String projectCategory, String projectDeadline){
+    protected ProjectCatalog(String projectID, String projectName, String projectDescription, String projectCategory, String projectDeadline){
         this.projectID = projectID;
         this.projectName = projectName;
         this.projectDescription = projectDescription;
@@ -20,7 +20,7 @@ public abstract class ProjectCatalog {
         this.projectDeadline = projectDeadline;
     }
 
-    public int getProjectID() {
+    public String getProjectID() {
         return projectID;
     }
 
@@ -51,7 +51,7 @@ public abstract class ProjectCatalog {
 
     @Override
     public String toString(){
-        return "User{id=" + projectID + ", name='" +projectName + ", Description = " + projectDescription + ", Deadline = "+ projectDeadline + ", Category = "+ projectCategory + "}";
+        return "User{id=" + projectID + ", name= " +projectName + ", Description = " + projectDescription + ", Deadline = "+ projectDeadline + ", Category = "+ projectCategory + "}";
      }
 }
 

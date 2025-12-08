@@ -1,5 +1,6 @@
 package utils;
 
+import models.ProjectCatalog;
 import models.TaskCatalog;
 import models.UserCatalog;
 import services.ProjectService;
@@ -218,8 +219,7 @@ public class ConsoleMenu {
                     case 5:
                         System.out.println("Search");
                         System.out.println("Enter project id to search:");
-                        int id = scanner.nextInt();
-                        scanner.nextLine();
+                        String id = scanner.nextLine();
                         projectService.findProjectById(id);
                         break;
                     case 6:
@@ -234,6 +234,47 @@ public class ConsoleMenu {
                         System.out.println("please enter a valid choice");
                 }
 
+            }
+        }
+    }
+    public void showProjectUpdateOptions(ProjectCatalog project) {
+        while (true) {
+            System.out.println("\n==== UPDATE MENU ====");
+            System.out.println("1. Update Project Name");
+            System.out.println("2. Update Project Description");
+            System.out.println("3. Update Project Deadline");
+            System.out.println("4. Exit Update Menu");
+            System.out.println("5. Exit system");
+            System.out.print("Choose an option: ");
+
+            choice = scanner.nextInt();
+
+            if (choice != 0) {
+
+                switch (choice) {
+                    case 1:
+                        projectService.updateProjectName(project);
+                        break;
+
+                    case 2:
+                        projectService.updateProjectDescription(project);
+                        break;
+
+                    case 3:
+                        projectService.updateProjectDeadline(project);
+                        break;
+
+                    case 4:
+                        System.out.println("Exiting update menu...");
+                        MainMenu();
+                        break;
+                    case 5:
+                        System.out.println("Exiting...");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Try again.");
+                }
             }
         }
     }
