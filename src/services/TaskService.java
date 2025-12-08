@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TaskService {
-    private final List<TaskCatalog> tasks = new ArrayList<>();
-    private final Scanner scanner = new Scanner(System.in);
+    private static final List<TaskCatalog> tasks = new ArrayList<>();
+    private static final Scanner scanner = new Scanner(System.in);
     private static int taskCounter = 0;
 
     private static String generateTaskId() {
@@ -62,7 +62,7 @@ public class TaskService {
             System.out.println(e.getMessage());
         }
         System.out.println("Enter project ID to assign this task:");
-        int projectId = Integer.parseInt(scanner.nextLine());
+        String projectId = scanner.nextLine();
         ProjectCatalog project = projectService.findProjectById(projectId);
         if (project == null) {
             System.out.println("Project not found, aborting.");
@@ -184,7 +184,7 @@ public class TaskService {
         System.out.println("Enter new project ID:");
 
         try {
-            int projectId = Integer.parseInt(scanner.nextLine());
+            String projectId = scanner.nextLine();
             ProjectCatalog project = projectService.findProjectById(projectId);
             if (project == null) {
                 System.out.println("Project not found.");

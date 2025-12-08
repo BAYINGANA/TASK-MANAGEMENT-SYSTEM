@@ -7,9 +7,9 @@ public class TaskCatalog {
     private String taskDescription;
     private TaskStatus taskStatus;
     private String assignedUserId;
-    private int projectID;
+    private String projectID;
 
-    public TaskCatalog(String taskId, String taskName, String taskDescription, int projectID) {
+    public TaskCatalog(String taskId, String taskName, String taskDescription, String projectID) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
@@ -46,7 +46,7 @@ public class TaskCatalog {
         this.assignedUserId = assignedUserId;
     }
 
-    public void setProjectID(int projectID) {
+    public void setProjectID(String projectID) {
         this.projectID = projectID;
     }
 

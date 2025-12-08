@@ -48,5 +48,15 @@ public class ValidationUtils {
         }
         return true;
     }
+
+    public static boolean isValidDate(String date) throws InvalidInputException{
+        String pattern = "^\\d{2}/\\d{2}/\\d{4}$";
+
+        if (!date.matches(pattern)) {
+            throw new InvalidInputException("Invalid date format! Expected dd/MM/yyyy");
+        }
+
+        return true;
+    }
 }
 
